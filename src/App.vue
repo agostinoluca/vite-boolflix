@@ -1,12 +1,13 @@
 <script>
 import axios from 'axios';
+import { state } from './state'
 export default {
   name: 'App',
   data() {
     return {
       inputText: '',
-      api_key: '71a27b20b786fe39560049b7c72c9d1f',
       movies: [],
+      state
     }
   },
   methods: {
@@ -17,13 +18,13 @@ export default {
     getListMovies() {
       const words = this.inputText.split(' ');
       const formattedInputText = words.join('+');
-      const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${this.api_key}&query=${formattedInputText}`;
+      const apiUrl = `${state.api_url}${state.api_key}&query=${formattedInputText}`;
       // console.log(apiUrl);
       axios
         .get(apiUrl)
         .then((response) => {
           this.movies = response.data.results;
-          console.log(this.movies);
+          // console.log(this.movies);
         })
         .catch((error) => {
           console.error(error);
