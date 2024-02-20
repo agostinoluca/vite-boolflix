@@ -60,6 +60,9 @@ export default {
     <li>{{ movie.original_title }}</li>
     <li>{{ movie.original_language }}</li>
     <li>{{ movie.vote_average }}</li>
+    <li><img :src="`${state.img_url_api}${state.img_size}${movie.poster_path}`"
+        :alt="`poster of ${movie.title}, missing img`">
+    </li>
   </ul>
   <h1>Tv Series</h1>
   <ul v-for="show in tvSeries">
@@ -67,6 +70,8 @@ export default {
     <li>{{ show.original_name }}</li>
     <li>{{ show.original_language }}</li>
     <li>{{ show.vote_average }}</li>
+    <li><img :src="`${state.img_url_api}${state.img_size}${show.poster_path}`"
+        :alt="`poster of ${show.name}, missing img`"></li>
   </ul>
 </template>
 
