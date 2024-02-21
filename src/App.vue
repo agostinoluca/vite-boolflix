@@ -47,6 +47,11 @@ export default {
           console.error(error);
         })
     },
+    starsVote(vote_average) {
+      const stars = vote_average / 2;
+      // console.log(stars);
+      return Math.ceil(stars);
+    }
   },
   computed: {
     flagCountryClass() {
@@ -79,7 +84,7 @@ export default {
           return 'flag-icon flag-icon-' + originalLanguage;
         }
       };
-    }
+    },
   }
 }
 </script>
@@ -92,7 +97,7 @@ export default {
     <li>{{ movie.title }}</li>
     <li>{{ movie.original_title }}</li>
     <li><i :class="flagCountryClass(movie.original_language)"></i>{{ movie.original_language }}</li>
-    <li>{{ movie.vote_average }}</li>
+    <li>{{ starsVote(movie.vote_average) }}</li>
     <li><img :src="`${state.img_url_api}${state.img_size}${movie.poster_path}`"
         :alt="`poster of ${movie.title}, missing img`">
     </li>
@@ -102,7 +107,7 @@ export default {
     <li>{{ show.name }}</li>
     <li>{{ show.original_name }}</li>
     <li><i :class="flagCountryClass(show.original_language)"></i>{{ show.original_language }}</li>
-    <li>{{ show.vote_average }}</li>
+    <li>{{ starsVote(show.vote_average) }}</li>
     <li><img :src="`${state.img_url_api}${state.img_size}${show.poster_path}`"
         :alt="`poster of ${show.name}, missing img`"></li>
   </ul>
