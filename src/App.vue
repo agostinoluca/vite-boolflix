@@ -14,12 +14,13 @@ export default {
   methods: {
     startSearch() {
       // console.log('Cerca', this.inputText);
-      this.getListMovies(),
-        this.getListSeries()
-    },
-    getListMovies() {
       const words = this.inputText.split(' ');
       const formattedInputText = words.join('+');
+      // console.log(formattedInputText);
+      this.getListMovies(formattedInputText),
+        this.getListSeries(formattedInputText)
+    },
+    getListMovies(formattedInputText) {
       const apiUrl = `${state.movie_api_url}${state.api_key}&query=${formattedInputText}`;
       // console.log(apiUrl);
       axios
@@ -32,9 +33,7 @@ export default {
           console.error(error);
         })
     },
-    getListSeries() {
-      const words = this.inputText.split(' ');
-      const formattedInputText = words.join('+');
+    getListSeries(formattedInputText) {
       const apiUrl = `${state.tv_series_api_url}${state.api_key}&query=${formattedInputText}`;
       // console.log(apiUrl);
       axios
