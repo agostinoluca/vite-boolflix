@@ -1,0 +1,37 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --boolflix-primary: #434343;
+    --boolflix-dark: #000000;
+    --boolflix-lighter: #ffffff;
+    --boolflix-danger: #ce0000;
+    --boolflix-warning: #ffbd00;
+}
+
+img {
+    max-width: 100%;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.p-1 {
+    padding: 0.5rem;
+}
+
+.p-2 {
+    padding: 1rem;
+}
