@@ -18,7 +18,7 @@ export default {
     <header>
         <div class="d-flex justify-content-between align-items-center p-2">
             <div class="logo">
-                <img src="../assets/img/logo.png" alt="Logo Boolflix">
+                <img width="180" src="../assets/img/logo.png" alt="Logo Boolflix">
             </div>
             <div class="searchNav d-flex g-1">
                 <input id="searchBar" v-model="inputText" @keyup.enter="emitInputText" type="text"
