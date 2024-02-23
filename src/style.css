@@ -35,3 +35,7 @@ img {
 .p-2 {
     padding: 1rem;
 }
+
+.g-1 {
+    gap: 0.5rem;
+}

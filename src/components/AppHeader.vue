@@ -20,10 +20,12 @@ export default {
             <div class="logo">
                 <img src="../assets/img/logo.png" alt="Logo Boolflix">
             </div>
-            <div class="searchNav">
+            <div class="searchNav d-flex g-1">
                 <input id="searchBar" v-model="inputText" @keyup.enter="emitInputText" type="text"
                     placeholder="Enter the title here">
-                <button @click="emitInputText">Search</button>
+                <button @click="emitInputText">
+                    <i class="fa-solid fa-caret-right"></i>
+                </button>
             </div>
         </div>
     </header>
@@ -32,6 +34,17 @@ export default {
 
 <style scoped>
 header {
-    background-color: --boolflix-primary;
+    background-color: var(--boolflix-dark);
+    box-shadow: 0 0 0.5rem black;
+}
+
+.searchNav button {
+    background-color: var(--boolflix-danger);
+    color: var(--boolflix-lighter);
+    border-radius: 50%;
+    padding: 0.25rem;
+    border: none;
+    height: 1.5rem;
+    aspect-ratio: 1;
 }
 </style>
