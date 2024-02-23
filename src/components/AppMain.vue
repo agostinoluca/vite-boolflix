@@ -63,32 +63,38 @@ export default {
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="movie in movies">
                     <div class="card">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5>{{ movie.title }}</h5>
-                                <h5>{{ movie.original_title }}</h5>
-                            </div>
-                            <div class="card-language">
-                                <span>
-                                    <i :class="flagCountryClass(movie.original_language)"></i>
-                                </span>
-                                <span>{{ movie.original_language }}</span>
-                            </div>
-                            <div class="card-rating">
-                                <div v-if="movie.vote_average === 0">
-                                    {{ noVoteMessage }}
+                        <div class="card-body d-none">
+                            <div class="card-info">
+                                <div class="card-title">
+                                    <h6>Title:</h6>
+                                    <h5>{{ movie.title }}</h5>
+                                    <h6>Original title:</h6>
+                                    <h5>{{ movie.original_title }}</h5>
                                 </div>
-                                <div v-else>
-                                    <span v-for="i in 5" :class="{
-                                        'fas fa-star': i <= starsVote(movie.vote_average),
-                                        'far fa-star': i > starsVote(movie.vote_average)
-                                    }"></span>
-                                    <span> ({{ movie.vote_count }} votes)</span>
+                                <div class="d-flex g-1">
+                                    <span>
+                                        <i :class="flagCountryClass(movie.original_language)"></i>
+                                    </span>
+                                    <span class="card-language">
+                                        {{ movie.original_language }}
+                                    </span>
+                                </div>
+                                <div class="card-rating">
+                                    <div v-if="movie.vote_average === 0">
+                                        {{ noVoteMessage }}
+                                    </div>
+                                    <div v-else>
+                                        <span v-for="i in 5" :class="{
+                                            'fas fa-star': i <= starsVote(movie.vote_average),
+                                            'far fa-star': i > starsVote(movie.vote_average)
+                                        }"></span>
+                                        <span> ({{ movie.vote_count }} votes)</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-poster">
-                            <img :src="`${state.img_url_api}${state.img_size}${movie.poster_path}`"
+                            <img :src="movie.poster_path ? `${state.img_url_api}${state.img_size}${movie.poster_path}` : state.poster_no_available"
                                 :alt="`poster of ${movie.title}, missing img`">
                         </div>
                     </div>
@@ -124,9 +130,48 @@ main {
     border: 0.05rem solid var(--boolflix-lighter);
     background-color: var(--boolflix-dark);
     color: var(--boolflix-lighter);
+    position: relative;
 
     & .card-body {
-        padding: 0.5rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 2.5rem 0.5rem;
+        background-color: var(--boolflix-dark);
+        width: 100%;
+        height: 100%;
+    }
+
+    & .card-info {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    & .card-title {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    & .card-title h6 {
+        color: var(--boolflix-primary);
+    }
+
+    & .card-language {
+        text-transform: uppercase;
+    }
+
+    & .card-poster {
+        height: 100%;
+        display: flex;
+    }
+
+    &:hover .card-body {
+        display: block;
     }
 }
 
