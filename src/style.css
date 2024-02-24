@@ -20,6 +20,8 @@ img {
 
 /* #endregion Common */
 
+/* #region Scrollbar */
+
 ::-webkit-scrollbar {
     width: 0.5rem;
 }
@@ -33,7 +35,6 @@ img {
 }
 
 /* #endregion Scrollbar */
-
 
 /* #region Layout */
 .container {
@@ -118,9 +119,13 @@ header {
 
 /* #endregion Header */
 
+/* #region Main */
 main {
     padding-top: 5rem;
+    min-height: 100vh;
 }
+
+/* #endregion Main */
 
 /* #region Animation */
 @keyframes rotate {
