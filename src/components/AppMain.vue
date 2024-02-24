@@ -8,11 +8,15 @@ export default {
     },
     props: {
         movies: Array,
-        tvSeries: Array
+        tvSeries: Array,
+        searchStart: Boolean
     },
     data() {
         return {
             noVoteMessage: 'no votes available',
+            noResults: 'No results for your search. Please check your input or try a new search.',
+            initialMovieTitle: 'MOST VIEWED MOVIE',
+            initialSeriesTitle: 'TOP RATED TV SERIES',
             state
         }
     },
@@ -29,7 +33,12 @@ export default {
 <template>
     <main>
         <div class="container">
-            <h1>Movies</h1>
+            <h1 v-if="!searchStart" class="text-danger text-shadow">{{ initialMovieTitle }}</h1>
+            <div v-else-if="this.movies.length === 0" class="px-5">
+                <h1 class="text-danger text-shadow">MOVIES NOT FOUND</h1>
+                <p class="text-secondary">{{ noResults }}</p>
+            </div>
+            <h1 v-else class="text-danger text-shadow">MOVIES</h1>
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="movie in movies">
                     <div class="card">
@@ -75,17 +84,22 @@ export default {
                 </div>
             </div>
 
-            <h1>Tv Series</h1>
+            <h1 v-if="!searchStart" class="text-danger text-shadow">{{ initialSeriesTitle }}</h1>
+            <div v-else-if="this.tvSeries.length === 0" class="px-5">
+                <h1 class="text-danger text-shadow">TV SERIES NOT FOUND</h1>
+                <p class="text-secondary">{{ noResults }}</p>
+            </div>
+            <h1 v-else class="text-danger text-shadow">TV SERIES</h1>
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="show in tvSeries">
                     <div class="card">
                         <div class="card-body d-none">
                             <div class="card-info">
                                 <div class="card-title">
-                                    <h6>Title:</h6>
+                                    <h6 class="text-secondary">Title:</h6>
                                     <h5>{{ show.name }}</h5>
                                     <div v-if="show.name != show.original_name">
-                                        <h6>Original title:</h6>
+                                        <h6 class="text-secondary">Original title:</h6>
                                         <h5>{{ show.original_name }}</h5>
                                     </div>
                                 </div>
@@ -106,7 +120,7 @@ export default {
                                             'fas fa-star': i <= starsVote(show.vote_average),
                                             'far fa-star': i > starsVote(show.vote_average)
                                         }"></span>
-                                        <span> ({{ show.vote_count }} votes)</span>
+                                        <span class="text-secondary"> ({{ show.vote_count }} votes)</span>
                                     </div>
                                 </div>
                                 <div class="overview">
@@ -165,6 +179,11 @@ main {
         align-items: center;
         gap: 0.5rem;
         text-align: center;
+    }
+
+    & .card-info .overview p {
+        font-size: 0.75rem;
+        padding-bottom: 0.5rem;
     }
 
     & .card-title {

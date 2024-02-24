@@ -5,12 +5,16 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: "Roboto", sans-serif;
+}
+
 :root {
     --boolflix-primary: #434343;
     --boolflix-secondary: #979393;
     --boolflix-dark: #000000;
     --boolflix-lighter: #ffffff;
-    --boolflix-danger: #ce0000;
+    --boolflix-danger: #dc1a28;
     --boolflix-warning: #ffbd00;
 }
 
@@ -90,6 +94,14 @@ img {
     padding: 1rem;
 }
 
+.px-1 {
+    padding: 0.5rem 0;
+}
+
+.px-5 {
+    padding: 2.5rem 0;
+}
+
 .g-1 {
     gap: 0.5rem;
 }
@@ -97,12 +109,24 @@ img {
 /* #endregion Utility */
 
 /* #region Text style utilities */
+.text-lighter {
+    color: var(--boolflix-lighter);
+}
+
 .text-secondary {
     color: var(--boolflix-secondary);
 }
 
 .text-warning {
     color: var(--boolflix-warning);
+}
+
+.text-danger {
+    color: var(--boolflix-danger);
+}
+
+.text-shadow {
+    text-shadow: 0 0 0.50rem var(--boolflix-dark);
 }
 
 /* #endregion Text style utilities */

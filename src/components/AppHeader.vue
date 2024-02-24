@@ -33,7 +33,7 @@ export default {
 
 
 <style scoped>
-.searchNav input {
+#searchBar {
     width: 100%;
 }
 
