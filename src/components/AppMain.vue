@@ -1,16 +1,20 @@
 <script>
 import { state } from '../state';
+import FlagCountry from './FlagCountry.vue';
 export default {
     name: 'AppMain',
+    components: {
+        FlagCountry
+    },
+    props: {
+        movies: Array,
+        tvSeries: Array
+    },
     data() {
         return {
             noVoteMessage: 'no votes available',
             state
         }
-    },
-    props: {
-        movies: Array,
-        tvSeries: Array
     },
     methods: {
         starsVote(vote_average) {
@@ -18,41 +22,7 @@ export default {
             // console.log(stars);
             return Math.ceil(stars);
         },
-    },
-    computed: {
-        flagCountryClass() {
-            return (originalLanguage) => {
-                if (originalLanguage === 'en' || originalLanguage === 'uk') {
-                    return 'flag-icon flag-icon-gb';
-                } else if (originalLanguage === 'hi') {
-                    return 'flag-icon flag-icon-us';
-                } else if (originalLanguage === 'ja') {
-                    return 'flag-icon flag-icon-jp';
-                } else if (originalLanguage === 'te') {
-                    return 'flag-icon flag-icon-in';
-                } else if (originalLanguage === 'sq') {
-                    return 'flag-icon flag-icon-al';
-                } else if (originalLanguage === 'el') {
-                    return 'flag-icon flag-icon-gr';
-                } else if (originalLanguage === 'zh') {
-                    return 'flag-icon flag-icon-cn';
-                } else if (originalLanguage === 'ko') {
-                    return 'flag-icon flag-icon-kr';
-                } else if (originalLanguage === 'cs') {
-                    return 'flag-icon flag-icon-cz';
-                } else if (originalLanguage === 'ar' || originalLanguage === 'ur') {
-                    return 'flag-icon flag-icon-ae';
-                } else if (originalLanguage === 'da') {
-                    return 'flag-icon flag-icon-dk';
-                } else if (originalLanguage === 'ka') {
-                    return 'flag-icon flag-icon-ge';
-                } else {
-                    return 'flag-icon flag-icon-' + originalLanguage;
-                }
-            };
-        },
     }
-
 }
 </script>
 
@@ -74,9 +44,7 @@ export default {
                                     </div>
                                 </div>
                                 <div class="d-flex g-1 align-items-center">
-                                    <span>
-                                        <i :class="flagCountryClass(movie.original_language)"></i>
-                                    </span>
+                                    <FlagCountry :originalLanguage="movie.original_language"></FlagCountry>
                                     <span class="card-language">
                                         {{ movie.original_language }}
                                     </span>
@@ -119,7 +87,7 @@ export default {
                                 </div>
                                 <div class="d-flex g-1 align-items-center">
                                     <span>
-                                        <i :class="flagCountryClass(show.original_language)"></i>
+                                        <FlagCountry :originalLanguage="show.original_language"></FlagCountry>
                                     </span>
                                     <span class="card-language">
                                         {{ show.original_language }}
