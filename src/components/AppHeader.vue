@@ -16,14 +16,14 @@ export default {
         
 <template>
     <header>
-        <div class="d-flex justify-content-between align-items-center p-2">
-            <div class="logo">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="logo d-flex">
                 <img width="180" src="../assets/img/logo.png" alt="Logo Boolflix">
             </div>
-            <div class="searchNav d-flex g-1">
+            <div class="searchNav d-flex">
                 <input id="searchBar" v-model="inputText" @keyup.enter="emitInputText" type="text"
                     placeholder="Enter the title here">
-                <button @click="emitInputText">
+                <button class="d-flex justify-content-center align-items-center" @click="emitInputText">
                     <i class="fa-solid fa-caret-right"></i>
                 </button>
             </div>
@@ -33,18 +33,28 @@ export default {
 
 
 <style scoped>
-header {
-    background-color: var(--boolflix-dark);
-    box-shadow: 0 0 0.5rem black;
+.searchNav input {
+    width: 100%;
+}
+
+.logo:hover img {
+    animation: rotate 1s linear;
 }
 
 .searchNav button {
+    border: none;
     background-color: var(--boolflix-danger);
     color: var(--boolflix-lighter);
     border-radius: 50%;
     padding: 0.25rem;
-    border: none;
+    margin-left: 0.25rem;
     height: 1.5rem;
     aspect-ratio: 1;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.1);
+        filter: brightness(100);
+    }
 }
 </style>
