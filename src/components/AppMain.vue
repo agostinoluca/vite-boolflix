@@ -36,10 +36,10 @@ export default {
                         <div class="card-body d-none">
                             <div class="card-info">
                                 <div class="card-title">
-                                    <h6>Title:</h6>
+                                    <h6 class="text-secondary">Title:</h6>
                                     <h5>{{ movie.title }}</h5>
                                     <div v-if="movie.title != movie.original_title">
-                                        <h6>Original title:</h6>
+                                        <h6 class="text-secondary">Original title:</h6>
                                         <h5>{{ movie.original_title }}</h5>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@ export default {
                                     </span>
                                 </div>
                                 <div class="card-rating">
-                                    <div v-if="movie.vote_average === 0">
+                                    <div class="text-warning" v-if="movie.vote_average === 0">
                                         {{ noVoteMessage }}
                                     </div>
                                     <div v-else>
@@ -58,8 +58,12 @@ export default {
                                             'fas fa-star': i <= starsVote(movie.vote_average),
                                             'far fa-star': i > starsVote(movie.vote_average)
                                         }"></span>
-                                        <span> ({{ movie.vote_count }} votes)</span>
+                                        <span class="text-secondary"> ({{ movie.vote_count }} votes)</span>
                                     </div>
+                                </div>
+                                <div class="overview">
+                                    <h6 class="text-secondary" v-if="movie.overview">Overview:</h6>
+                                    <p>{{ movie.overview }}</p>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +98,7 @@ export default {
                                     </span>
                                 </div>
                                 <div class="card-rating">
-                                    <div v-if="show.vote_average === 0">
+                                    <div class="text-warning" v-if="show.vote_average === 0">
                                         {{ noVoteMessage }}
                                     </div>
                                     <div v-else>
@@ -104,6 +108,10 @@ export default {
                                         }"></span>
                                         <span> ({{ show.vote_count }} votes)</span>
                                     </div>
+                                </div>
+                                <div class="overview">
+                                    <h6 class="text-secondary" v-if="show.overview">Overview:</h6>
+                                    <p>{{ show.overview }}</p>
                                 </div>
                             </div>
                         </div>
@@ -131,6 +139,10 @@ main {
     color: var(--boolflix-lighter);
     box-shadow: 0 0 0.5rem var(--boolflix-dark);
 
+    & ::-webkit-scrollbar {
+        width: 0.35rem;
+    }
+
     &:hover {
         animation: shadow-animation 3s linear infinite;
     }
@@ -139,10 +151,11 @@ main {
         position: absolute;
         top: 0;
         left: 0;
-        padding: 2.5rem 0.5rem;
+        padding: 0.5rem;
         background-color: var(--boolflix-dark);
         width: 100%;
         height: 100%;
+        overflow: auto;
     }
 
     & .card-info {
@@ -158,10 +171,6 @@ main {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
-    }
-
-    & .card-title h6 {
-        color: var(--boolflix-primary);
     }
 
     & .card-language {
@@ -183,13 +192,8 @@ main {
     }
 }
 
-.flag-icon {
-    border: 1px solid black;
-    border-radius: 2px;
-    box-shadow: 1px 1px 1px black;
-}
 
 .fa-star {
-    color: rgb(245, 245, 39);
+    color: var(--boolflix-warning);
 }
 </style>

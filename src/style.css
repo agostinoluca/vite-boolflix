@@ -7,6 +7,7 @@
 
 :root {
     --boolflix-primary: #434343;
+    --boolflix-secondary: #979393;
     --boolflix-dark: #000000;
     --boolflix-lighter: #ffffff;
     --boolflix-danger: #ce0000;
@@ -18,6 +19,21 @@ img {
 }
 
 /* #endregion Common */
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--boolflix-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--boolflix-lighter);
+}
+
+/* #endregion Scrollbar */
+
 
 /* #region Layout */
 .container {
@@ -78,6 +94,17 @@ img {
 }
 
 /* #endregion Utility */
+
+/* #region Text style utilities */
+.text-secondary {
+    color: var(--boolflix-secondary);
+}
+
+.text-warning {
+    color: var(--boolflix-warning);
+}
+
+/* #endregion Text style utilities */
 
 /* #region Header */
 header {

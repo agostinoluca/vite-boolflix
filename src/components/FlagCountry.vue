@@ -43,4 +43,9 @@ export default {
 </template>
 
 
-<style scoped></style>
+<style scoped>
+.flag-icon {
+    border-radius: 2px;
+    box-shadow: 0 0 0.25rem var(--boolflix-primary);
+}
+</style>
