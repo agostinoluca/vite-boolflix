@@ -1,17 +1,20 @@
 <script>
+import { state } from '../state';
 export default {
     name: 'AppHeader',
+    emits: ['emitInputText'],
     data() {
         return {
             inputText: '',
         }
     },
     methods: {
-        emitInputText() {
-            this.$emit('search', this.inputText)
-        },
+        // emitInputText() {
+        //     this.$emit('search', this.inputText)
+        // },
         goHome() {
-            console.log('ok, ci sono');
+            state.getInitialResultsMovies();
+            state.getInitialResultsSeries()
         }
     }
 }
@@ -24,9 +27,9 @@ export default {
                 <img @click="goHome" width="180" src="../assets/img/logo.png" alt="Logo Boolflix">
             </div>
             <div class="searchNav d-flex">
-                <input id="searchBar" v-model="inputText" @keyup.enter="emitInputText" type="text"
+                <input id="searchBar" v-model="inputText" @keyup.enter="$emit('emitInputText', inputText)" type="text"
                     placeholder="Enter the title here">
-                <button class="d-flex justify-content-center align-items-center" @click="emitInputText">
+                <button class="d-flex justify-content-center align-items-center" @click="$emit('emitInputText', inputText)">
                     <i class="fa-solid fa-caret-right"></i>
                 </button>
             </div>
@@ -42,6 +45,7 @@ export default {
 
 .logo:hover img {
     animation: rotate 1s linear;
+    cursor: pointer;
 }
 
 .searchNav button {

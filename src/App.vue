@@ -58,7 +58,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @search="startSearch"></AppHeader>
+  <AppHeader @emitInputText="startSearch"></AppHeader>
   <AppMain></AppMain>
 </template>
 
