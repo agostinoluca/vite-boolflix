@@ -15,8 +15,11 @@ export default {
     }
   },
   created() {
+    // setTimeout(() => {
     state.getInitialResultsMovies();
-    state.getInitialResultsSeries()
+    state.getInitialResultsSeries();
+    state.loader = false;
+    // }, 3000);
   },
   methods: {
     getListMovies(formattedInputText) {
@@ -27,6 +30,7 @@ export default {
         .then((response) => {
           state.movies = response.data.results;
           state.searchStart = true;
+          state.loader = false;
         })
         .catch((error) => {
           console.error(error);
@@ -40,6 +44,7 @@ export default {
         .then((response) => {
           state.tvSeries = response.data.results;
           state.searchStart = true;
+          state.loader = false;
         })
         .catch((error) => {
           console.error(error);

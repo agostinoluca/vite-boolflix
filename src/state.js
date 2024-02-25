@@ -2,6 +2,7 @@ import axios from 'axios';
 import {reactive} from 'vue';
 
 export const state = reactive({
+    loader: true,
     movies: [],
     tvSeries: [],
     searchStart: false,
