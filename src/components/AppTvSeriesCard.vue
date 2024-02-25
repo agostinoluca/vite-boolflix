@@ -19,7 +19,7 @@ export default {
         <div class="col-12 pb-0">
             <h2 v-if="!state.searchStart" class="text-secondary text-shadow">{{ state.initialSeriesTitle }}</h2>
             <div v-else-if="state.tvSeries.length === 0" class="px-5">
-                <h2 class="text-secondary text-shadow">Tv Series Not Found</h2>
+                <h2 class="text-danger text-shadow">Tv Series Not Found</h2>
                 <p class="text-secondary">{{ state.noResults }}</p>
             </div>
             <h2 v-else class="text-secondary text-shadow">Tv Series</h2>
