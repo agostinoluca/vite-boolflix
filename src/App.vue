@@ -11,9 +11,6 @@ export default {
   },
   data() {
     return {
-      movies: [],
-      tvSeries: [],
-      searchStart: false,
       state
     }
   },
@@ -27,7 +24,7 @@ export default {
       axios
         .get(apiUrl)
         .then((response) => {
-          this.movies = response.data.results;
+          state.movies = response.data.results;
         })
         .catch((error) => {
           console.error(error);
@@ -38,7 +35,7 @@ export default {
       axios
         .get(apiUrl)
         .then((response) => {
-          this.tvSeries = response.data.results;
+          state.tvSeries = response.data.results;
         })
         .catch((error) => {
           console.error(error);
@@ -50,9 +47,8 @@ export default {
       axios
         .get(apiUrl)
         .then((response) => {
-          this.movies = response.data.results;
-          // console.log(this.movies);
-          this.searchStart = true;
+          state.movies = response.data.results;
+          state.searchStart = true;
         })
         .catch((error) => {
           console.error(error);
@@ -64,9 +60,8 @@ export default {
       axios
         .get(apiUrl)
         .then((response) => {
-          this.tvSeries = response.data.results;
-          // console.log(this.tvSeries);
-          this.searchStart = true;
+          state.tvSeries = response.data.results;
+          state.searchStart = true;
         })
         .catch((error) => {
           console.error(error);
@@ -86,7 +81,7 @@ export default {
 
 <template>
   <AppHeader @search="startSearch"></AppHeader>
-  <AppMain :movies="movies" :tvSeries="tvSeries" :searchStart="this.searchStart"></AppMain>
+  <AppMain></AppMain>
 </template>
 
 <style></style>

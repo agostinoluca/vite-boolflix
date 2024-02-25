@@ -149,8 +149,77 @@ header {
 
 /* #region Main */
 main {
+    background-color: var(--boolflix-primary);
     padding-top: 5rem;
     min-height: 100vh;
+}
+
+.card {
+    position: relative;
+    background-color: var(--boolflix-dark);
+    color: var(--boolflix-lighter);
+    box-shadow: 0 0 0.5rem var(--boolflix-dark);
+
+    & ::-webkit-scrollbar {
+        width: 0.35rem;
+    }
+
+    &:hover {
+        animation: shadow-animation 3s linear infinite;
+    }
+
+    & .card-body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0.5rem;
+        background-color: var(--boolflix-dark);
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+
+    & .card-info {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    & .card-info .overview p {
+        font-size: 0.75rem;
+        padding-bottom: 0.5rem;
+    }
+
+    & .card-title {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    & .card-language {
+        text-transform: uppercase;
+        font-size: 0.75rem;
+    }
+
+    & .card-poster {
+        height: 18rem;
+        display: flex;
+    }
+
+    & .card-poster img {
+        width: 100%;
+    }
+
+    &:hover .card-body {
+        display: block;
+    }
+}
+
+.fa-star {
+    color: var(--boolflix-warning);
 }
 
 /* #endregion Main */
