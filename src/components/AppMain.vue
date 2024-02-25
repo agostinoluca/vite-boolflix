@@ -15,8 +15,8 @@ export default {
         return {
             noVoteMessage: 'no votes available',
             noResults: 'No results for your search. Please check your input or try a new search.',
-            initialMovieTitle: 'MOST VIEWED MOVIE',
-            initialSeriesTitle: 'TOP RATED TV SERIES',
+            initialMovieTitle: 'Most viewed movie',
+            initialSeriesTitle: 'Top rated Tv Series',
             state
         }
     },
@@ -33,13 +33,16 @@ export default {
 <template>
     <main>
         <div class="container">
-            <h1 v-if="!searchStart" class="text-danger text-shadow">{{ initialMovieTitle }}</h1>
-            <div v-else-if="this.movies.length === 0" class="px-5">
-                <h1 class="text-danger text-shadow">MOVIES NOT FOUND</h1>
-                <p class="text-secondary">{{ noResults }}</p>
-            </div>
-            <h1 v-else class="text-danger text-shadow">MOVIES</h1>
             <div class="row">
+                <div class="col-12 pb-0">
+                    <h2 v-if="!searchStart" class="text-secondary text-shadow">{{ initialMovieTitle }}</h2>
+                    <div v-else-if="this.movies.length === 0" class="px-5">
+                        <h2 class="text-secondary text-shadow">Movies not found</h2>
+                        <p class="text-secondary">{{ noResults }}</p>
+                    </div>
+                    <h2 v-else class="text-secondary text-shadow">Movies</h2>
+                </div>
+                <!-- /.col-12 (Movies title) -->
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="movie in movies">
                     <div class="card">
                         <div class="card-body d-none">
@@ -83,14 +86,18 @@ export default {
                     </div>
                 </div>
             </div>
+            <!-- /.row (movies) -->
 
-            <h1 v-if="!searchStart" class="text-danger text-shadow">{{ initialSeriesTitle }}</h1>
-            <div v-else-if="this.tvSeries.length === 0" class="px-5">
-                <h1 class="text-danger text-shadow">TV SERIES NOT FOUND</h1>
-                <p class="text-secondary">{{ noResults }}</p>
-            </div>
-            <h1 v-else class="text-danger text-shadow">TV SERIES</h1>
             <div class="row">
+                <div class="col-12 pb-0">
+                    <h2 v-if="!searchStart" class="text-secondary text-shadow">{{ initialSeriesTitle }}</h2>
+                    <div v-else-if="this.tvSeries.length === 0" class="px-5">
+                        <h2 class="text-secondary text-shadow">Tv Series Not Found</h2>
+                        <p class="text-secondary">{{ noResults }}</p>
+                    </div>
+                    <h2 v-else class="text-secondary text-shadow">Tv Series</h2>
+                </div>
+                <!-- /.col-12 (Tv series title) -->
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="show in tvSeries">
                     <div class="card">
                         <div class="card-body d-none">
@@ -136,8 +143,9 @@ export default {
                     </div>
                 </div>
             </div>
+            <!-- /.row (Tv Series) -->
         </div>
-
+        <!-- /.container -->
     </main>
 </template>
 
@@ -210,7 +218,6 @@ main {
         display: block;
     }
 }
-
 
 .fa-star {
     color: var(--boolflix-warning);

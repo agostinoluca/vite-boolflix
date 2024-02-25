@@ -23,9 +23,9 @@ export default {
             <div class="searchNav d-flex">
                 <input id="searchBar" v-model="inputText" @keyup.enter="emitInputText" type="text"
                     placeholder="Enter the title here">
-                <!-- <button class="d-flex justify-content-center align-items-center" @click="emitInputText">
+                <button class="d-flex justify-content-center align-items-center" @click="emitInputText">
                     <i class="fa-solid fa-caret-right"></i>
-                </button> -->
+                </button>
             </div>
         </div>
     </header>
@@ -54,7 +54,6 @@ export default {
 
     &:hover {
         transform: scale(1.1);
-        filter: brightness(100);
     }
 }
 </style>
