@@ -1,4 +1,5 @@
-import {reactive} from 'vue'
+import axios from 'axios';
+import {reactive} from 'vue';
 
 export const state = reactive({
     movies: [],
@@ -19,4 +20,26 @@ export const state = reactive({
         const stars = vote_average / 2;
         return Math.ceil(stars);
     },
+    getInitialResultsMovies() {
+        const apiUrl = state.movie_initial_api;
+        axios
+          .get(apiUrl)
+          .then((response) => {
+            state.movies = response.data.results;
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+      },
+      getInitialResultsSeries() {
+        const apiUrl = state.tv_series_initial_api;
+        axios
+          .get(apiUrl)
+          .then((response) => {
+            state.tvSeries = response.data.results;
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+      },
 })

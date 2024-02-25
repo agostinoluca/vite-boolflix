@@ -9,6 +9,9 @@ export default {
     methods: {
         emitInputText() {
             this.$emit('search', this.inputText)
+        },
+        goHome() {
+            console.log('ok, ci sono');
         }
     }
 }
@@ -18,7 +21,7 @@ export default {
     <header>
         <div class="d-flex justify-content-between align-items-center">
             <div class="logo d-flex">
-                <img width="180" src="../assets/img/logo.png" alt="Logo Boolflix">
+                <img @click="goHome" width="180" src="../assets/img/logo.png" alt="Logo Boolflix">
             </div>
             <div class="searchNav d-flex">
                 <input id="searchBar" v-model="inputText" @keyup.enter="emitInputText" type="text"
