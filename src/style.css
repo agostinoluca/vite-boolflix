@@ -142,7 +142,7 @@ header {
     width: 100%;
     padding: 0.25rem;
     background-color: var(--boolflix-dark);
-    box-shadow: 0 0 0.5rem var(--boolflix-dark);
+    box-shadow: 0 0 0.75rem var(--boolflix-secondary);
 }
 
 /* #endregion Header */
@@ -150,7 +150,7 @@ header {
 /* #region Main */
 main {
     background-color: var(--boolflix-primary);
-    padding-top: 5rem;
+    padding-top: 3.75rem;
     min-height: 100vh;
 }
 
@@ -262,7 +262,7 @@ main {
     }
 
     main {
-        padding-top: 7rem;
+        padding-top: 6rem;
     }
 
     .container {
