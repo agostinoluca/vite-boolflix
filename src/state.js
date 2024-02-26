@@ -40,6 +40,17 @@ export const state = reactive({
         console.error(error);
       })
     },
+    getCast(movieId) {
+      const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=71a27b20b786fe39560049b7c72c9d1f`;
+      axios
+      .get(apiUrl)
+      .then((response) => {
+        console.log(response.data.cast[0].name);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+    },
     starsVote(vote_average) {
         const stars = vote_average / 2;
         return Math.ceil(stars);

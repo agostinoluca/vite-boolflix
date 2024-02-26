@@ -25,7 +25,7 @@ export default {
             <h2 v-else class="text-secondary text-shadow">Movies</h2>
         </div>
         <!-- /.col-12 (Movies title) -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="movie in state.movies">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="movie in state.movies" :key="movie.id">
             <div class="card">
                 <div class="card-body d-none">
                     <div class="card-info">
@@ -48,6 +48,7 @@ export default {
                             <h6 class="text-secondary" v-if="movie.overview">Overview:</h6>
                             <p>{{ movie.overview }}</p>
                         </div>
+                        <div>{{ state.getCast(movie.id) }}</div>
                     </div>
                 </div>
                 <div class="card-poster">
