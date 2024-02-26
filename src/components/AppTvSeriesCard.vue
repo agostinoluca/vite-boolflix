@@ -10,7 +10,7 @@ export default {
         return {
             state
         }
-    }
+    },
 }
 </script>
 
@@ -45,18 +45,7 @@ export default {
                                 {{ show.original_language }}
                             </span>
                         </div>
-                        <div class="card-rating">
-                            <div class="text-warning" v-if="show.vote_average === 0">
-                                {{ state.noVoteMessage }}
-                            </div>
-                            <div v-else>
-                                <span v-for="i in 5" :class="{
-                                    'fas fa-star': i <= state.starsVote(show.vote_average),
-                                    'far fa-star': i > state.starsVote(show.vote_average)
-                                }"></span>
-                                <span class="text-secondary"> ({{ show.vote_count }} votes)</span>
-                            </div>
-                        </div>
+                        <div class="card-rating" v-html="state.cardRating(show)"></div>
                         <div class="overview">
                             <h6 class="text-secondary" v-if="show.overview">Overview:</h6>
                             <p>{{ show.overview }}</p>

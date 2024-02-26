@@ -43,4 +43,24 @@ export const state = reactive({
             console.error(error);
           })
       },
+      cardRating(item) {
+        if (item.vote_average === 0) {
+            return `
+          <div class="text-warning">{{ state.noVoteMessage }}</div>
+      `;
+        } else {
+            const stars = [];
+            for (let i = 1; i <= 5; i++) {
+                if (i <= state.starsVote(item.vote_average)) {
+                    stars.push('<span class="fas fa-star"></span>');
+                } else {
+                    stars.push('<span class="far fa-star"></span>');
+                }
+            }
+            return `
+          ${stars.join('')}
+          <span class="text-secondary">(${item.vote_count} votes)</span>
+      `;
+        }
+    }
 })

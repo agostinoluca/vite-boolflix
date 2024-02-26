@@ -43,18 +43,7 @@ export default {
                                 {{ movie.original_language }}
                             </span>
                         </div>
-                        <div class="card-rating">
-                            <div class="text-warning" v-if="movie.vote_average === 0">
-                                {{ state.noVoteMessage }}
-                            </div>
-                            <div v-else>
-                                <span v-for="i in 5" :class="{
-                                    'fas fa-star': i <= state.starsVote(movie.vote_average),
-                                    'far fa-star': i > state.starsVote(movie.vote_average)
-                                }"></span>
-                                <span class="text-secondary"> ({{ movie.vote_count }} votes)</span>
-                            </div>
-                        </div>
+                        <div class="card-rating" v-html="state.cardRating(movie)"></div>
                         <div class="overview">
                             <h6 class="text-secondary" v-if="movie.overview">Overview:</h6>
                             <p>{{ movie.overview }}</p>
