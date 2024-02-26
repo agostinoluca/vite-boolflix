@@ -20,43 +20,44 @@ export default {
     // setTimeout(() => {
     state.getInitialResultsMovies();
     state.getInitialResultsSeries();
-    state.loader = false;
     // }, 3000);
   },
   methods: {
     getListMovies(formattedInputText) {
+      // setTimeout(() => {
       const apiUrl = `${state.movie_api_url}&query=${formattedInputText}`;
-      // console.log(apiUrl);
       axios
         .get(apiUrl)
         .then((response) => {
           state.movies = response.data.results;
-          state.searchStart = true;
           state.loader = false;
         })
         .catch((error) => {
           console.error(error);
         })
+      // }, 3000);
+
     },
+
     getListSeries(formattedInputText) {
+      // setTimeout(() => {
       const apiUrl = `${state.tv_series_api_url}&query=${formattedInputText}`;
-      // console.log(apiUrl);
       axios
         .get(apiUrl)
         .then((response) => {
           state.tvSeries = response.data.results;
-          state.searchStart = true;
           state.loader = false;
         })
         .catch((error) => {
           console.error(error);
         })
+      // }, 3000);
+
     },
     startSearch(inputText) {
-      // console.log('Cerca', this.inputText);
+      state.loader = true
       const words = inputText.split(' ');
       const formattedInputText = words.join('+');
-      // console.log(formattedInputText);
       this.getListMovies(formattedInputText),
         this.getListSeries(formattedInputText)
     },

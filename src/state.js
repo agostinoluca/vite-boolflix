@@ -5,7 +5,6 @@ export const state = reactive({
     loader: true,
     movies: [],
     tvSeries: [],
-    searchStart: false,
     movie_initial_api: 'https://api.themoviedb.org/3/movie/popular?api_key=71a27b20b786fe39560049b7c72c9d1f',
     tv_series_initial_api: 'https://api.themoviedb.org/3/tv/top_rated?api_key=71a27b20b786fe39560049b7c72c9d1f',
     movie_api_url: 'https://api.themoviedb.org/3/search/movie?api_key=71a27b20b786fe39560049b7c72c9d1f',
@@ -23,6 +22,7 @@ export const state = reactive({
       .get(apiUrl)
       .then((response) => {
         state.movies = response.data.results;
+        state.loader = false;
       })
       .catch((error) => {
         console.error(error);
@@ -34,6 +34,7 @@ export const state = reactive({
       .get(apiUrl)
       .then((response) => {
         state.tvSeries = response.data.results;
+        state.loader = false;
       })
       .catch((error) => {
         console.error(error);
