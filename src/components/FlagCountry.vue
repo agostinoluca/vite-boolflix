@@ -21,7 +21,8 @@ export default {
                 ur: 'ae',
                 da: 'dk',
                 ka: 'ge',
-                he: 'il'
+                he: 'il',
+                fa: 'ir'
             };
 
             const countryCode = languageMap[this.originalLanguage] || this.originalLanguage;
