@@ -3,6 +3,7 @@ import {reactive} from 'vue';
 
 export const state = reactive({
     loader: true,
+    searchStart: true,
     movies: [],
     tvSeries: [],
     cast: [],
@@ -63,7 +64,7 @@ export const state = reactive({
     cardRating(item) {
       if (item.vote_average === 0) {
           return `
-            <div class="text-warning">{{ state.noVoteMessage }}</div>
+            <div class="text-warning">${state.noVoteMessage}</div>
           `;
       } else {
             const stars = [];
