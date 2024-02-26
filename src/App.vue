@@ -2,12 +2,14 @@
 import { state } from './state';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
+import AppFooter from './components/AppFooter.vue';
 import axios from 'axios';
 export default {
   name: 'App',
   components: {
     AppHeader,
-    AppMain
+    AppMain,
+    AppFooter
   },
   data() {
     return {
@@ -65,6 +67,5 @@ export default {
 <template>
   <AppHeader @emitInputText="startSearch"></AppHeader>
   <AppMain></AppMain>
+  <AppFooter></AppFooter>
 </template>
-
-<style></style>

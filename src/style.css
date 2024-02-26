@@ -66,6 +66,10 @@ img {
 /* #endregion Layout */
 
 /* #region Utility */
+.h-100 {
+    height: 100%;
+}
+
 .d-none {
     display: none;
 }
