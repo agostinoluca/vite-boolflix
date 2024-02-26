@@ -26,7 +26,7 @@ export default {
         </div>
         <!-- /.col-12 (Movies title) -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="movie in state.movies" :key="movie.id">
-            <div class="card">
+            <div class="card" @mouseleave="state.resetCast()">
                 <div class="card-body d-none">
                     <div class="card-info">
                         <div class="card-title">
@@ -44,11 +44,16 @@ export default {
                             </span>
                         </div>
                         <div class="card-rating" v-html="state.cardRating(movie)"></div>
+                        <div class="cast-genre">
+                            <button @click="state.getCast(movie.id)">CAST</button>
+                            <div v-for="actor in state.cast" :key="actor.id">
+                                <p class="cast">{{ actor.name }}</p>
+                            </div>
+                        </div>
                         <div class="overview">
                             <h6 class="text-secondary" v-if="movie.overview">Overview:</h6>
                             <p>{{ movie.overview }}</p>
                         </div>
-                        <div>{{ state.getCast(movie.id) }}</div>
                     </div>
                 </div>
                 <div class="card-poster">

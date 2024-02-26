@@ -5,6 +5,7 @@ export const state = reactive({
     loader: true,
     movies: [],
     tvSeries: [],
+    cast: [],
     movie_initial_api: 'https://api.themoviedb.org/3/movie/popular?api_key=71a27b20b786fe39560049b7c72c9d1f',
     tv_series_initial_api: 'https://api.themoviedb.org/3/tv/top_rated?api_key=71a27b20b786fe39560049b7c72c9d1f',
     movie_api_url: 'https://api.themoviedb.org/3/search/movie?api_key=71a27b20b786fe39560049b7c72c9d1f',
@@ -45,11 +46,15 @@ export const state = reactive({
       axios
       .get(apiUrl)
       .then((response) => {
-        console.log(response.data.cast[0].name);
+        state.cast = response.data.cast.slice(0, 5);
+        // console.log(response.data.cast);
       })
       .catch((error) => {
         console.error(error);
       })
+    },
+    resetCast() {
+      state.cast = [];
     },
     starsVote(vote_average) {
         const stars = vote_average / 2;

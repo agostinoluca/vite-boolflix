@@ -192,6 +192,10 @@ main {
         text-align: center;
     }
 
+    & .cast-genre p {
+        font-size: 0.75rem;
+    }
+
     & .card-info .overview p {
         font-size: 0.75rem;
         padding-bottom: 0.5rem;
