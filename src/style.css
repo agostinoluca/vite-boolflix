@@ -66,6 +66,16 @@ img {
 /* #endregion Layout */
 
 /* #region Utility */
+.btn {
+    background-color: var(--boolflix-primary);
+    color: var(--boolflix-lighter);
+    margin: 0 0.25rem 0.5rem 0.25rem;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    border: none;
+    font-size: 0.75rem;
+}
+
 .h-100 {
     height: 100%;
 }
