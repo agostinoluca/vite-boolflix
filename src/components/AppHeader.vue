@@ -23,8 +23,15 @@ export default {
 <template>
     <header>
         <div class="d-flex justify-content-between align-items-center">
-            <div class="logo d-flex">
-                <img @click="goHome" width="180" src="../assets/img/logo.png" alt="Logo Boolflix">
+            <div class="d-flex align-items-center g-5">
+                <div class="logo d-flex">
+                    <img width="180" src="../assets/img/logo.png" alt="Logo Boolflix">
+                </div>
+                <ul class="d-flex">
+                    <li @click="goHome">Home</li>
+                    <li>Movies</li>
+                    <li>Tv Series</li>
+                </ul>
             </div>
             <div class="searchNav d-flex">
                 <input id="searchBar" v-model="inputText" @keyup.enter="$emit('emitInputText', inputText)" type="text"
@@ -61,6 +68,19 @@ export default {
 
     &:hover {
         transform: scale(1.1);
+    }
+}
+
+ul {
+    color: var(--boolflix-secondary);
+    font-weight: 700;
+    list-style: none;
+    gap: 1rem;
+
+    & li:hover {
+        box-shadow: 0px 2px 0px 0px var(--boolflix-danger);
+        border-radius: 0.15rem;
+        cursor: pointer;
     }
 }
 </style>
