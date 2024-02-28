@@ -27,7 +27,7 @@ export default {
                 <div class="logo d-flex">
                     <img width="180" src="../assets/img/logo.png" alt="Logo Boolflix">
                 </div>
-                <ul class="d-flex">
+                <ul>
                     <li @click="goHome">Home</li>
                     <li>Movies</li>
                     <li>Tv Series</li>

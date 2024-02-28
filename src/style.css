@@ -162,6 +162,10 @@ header {
     padding: 0.25rem;
     background-color: var(--boolflix-dark);
     box-shadow: 0 0 0.75rem var(--boolflix-secondary);
+
+    & ul {
+        display: none;
+    }
 }
 
 /* #endregion Header */
@@ -299,6 +303,10 @@ main {
 }
 
 @media (min-width: 768px) {
+    header ul {
+        display: flex;
+    }
+
     .container {
         max-width: 900px;
     }
