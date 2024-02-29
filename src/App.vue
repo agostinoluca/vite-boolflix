@@ -55,6 +55,7 @@ export default {
 
     },
     startSearch(inputText) {
+      state.searchStart = true
       state.loader = true
       const words = inputText.split(' ');
       const formattedInputText = words.join('+');
