@@ -14,7 +14,8 @@ export default {
         // },
         goHome() {
             state.getInitialResultsMovies();
-            state.getInitialResultsSeries()
+            state.getInitialResultsSeries();
+            state.searchStart = false;
         }
     }
 }
@@ -31,6 +32,7 @@ export default {
                     <li @click="goHome">Home</li>
                     <li>Movies</li>
                     <li>Tv Series</li>
+                    <li>Kids</li>
                 </ul>
             </div>
             <div class="searchNav d-flex">

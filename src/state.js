@@ -3,7 +3,7 @@ import { reactive } from "vue";
 
 export const state = reactive({
   loader: true,
-  searchStart: true,
+  searchStart: false,
   movies: [],
   tvSeries: [],
   cast: [],
