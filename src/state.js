@@ -4,12 +4,15 @@ import { reactive } from "vue";
 export const state = reactive({
   loader: true,
   searchStart: false,
+  selectedType: "",
   movies: [],
   tvSeries: [],
   cast: [],
   genres: [],
   showGenres: false,
   unavalaibleInfo: false,
+  onlyMovies: false,
+  onlySeries: false,
   movie_initial_api:
     "https://api.themoviedb.org/3/movie/popular?api_key=71a27b20b786fe39560049b7c72c9d1f",
   tv_series_initial_api:
@@ -18,12 +21,16 @@ export const state = reactive({
     "https://api.themoviedb.org/3/search/movie?api_key=71a27b20b786fe39560049b7c72c9d1f",
   tv_series_api_url:
     "https://api.themoviedb.org/3/search/tv?api_key=71a27b20b786fe39560049b7c72c9d1f",
+  trending_movies:
+    "https://api.themoviedb.org/3/trending/movie/day?api_key=71a27b20b786fe39560049b7c72c9d1f",
+  trending_tv_series:
+    "https://api.themoviedb.org/3/trending/tv/day?api_key=71a27b20b786fe39560049b7c72c9d1f",
   img_url_api: "https://image.tmdb.org/t/p/",
   img_size: "w780", // available sizes: w92 - w154 - w185 - w342 - w500 - w780 - original
   poster_no_available:
     "https://image.tmdb.org/t/p/w342/1B93sLOD6NbwA4DWPVdIi4bXXKi.jpg",
-  initialMovieTitle: "Most viewed movie",
-  initialSeriesTitle: "Top rated Tv Series",
+  movieSectionTitle: "",
+  seriesSectionTitle: "",
   noVoteMessage: "no votes available",
   noResults:
     "No results for your search. Please check your input or try a new search.",
@@ -34,6 +41,24 @@ export const state = reactive({
       .get(apiUrl)
       .then((response) => {
         state.movies = response.data.results;
+        state.movieSectionTitle = "Most viewed movies";
+        state.onlySeries = false;
+        state.onlyMovies = false;
+        state.loader = false;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  },
+  getTrendingMovies() {
+    const apiUrl = state.trending_movies;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        state.movies = response.data.results;
+        state.movieSectionTitle = "Trending Movies";
+        state.onlySeries = false;
+        state.onlyMovies = true;
         state.loader = false;
       })
       .catch((error) => {
@@ -46,6 +71,24 @@ export const state = reactive({
       .get(apiUrl)
       .then((response) => {
         state.tvSeries = response.data.results;
+        state.seriesSectionTitle = "Top rated Tv Series";
+        state.onlySeries = false;
+        state.onlyMovies = false;
+        state.loader = false;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  },
+  getTrendingSeries() {
+    const apiUrl = state.trending_tv_series;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        state.tvSeries = response.data.results;
+        state.seriesSectionTitle = "Trending Tv Series";
+        state.onlySeries = true;
+        state.onlyMovies = false;
         state.loader = false;
       })
       .catch((error) => {

@@ -30,6 +30,8 @@ export default {
         .get(apiUrl)
         .then((response) => {
           state.movies = response.data.results;
+          state.onlySeries = false;
+          state.onlyMovies = false;
           state.loader = false;
         })
         .catch((error) => {
@@ -46,6 +48,8 @@ export default {
         .get(apiUrl)
         .then((response) => {
           state.tvSeries = response.data.results;
+          state.onlySeries = false;
+          state.onlyMovies = false;
           state.loader = false;
         })
         .catch((error) => {
@@ -54,13 +58,14 @@ export default {
       // }, 3000);
 
     },
-    startSearch(inputText) {
+    startSearch(inputText, selectedType) {
       state.searchStart = true
       state.loader = true
       const words = inputText.split(' ');
       const formattedInputText = words.join('+');
-      this.getListMovies(formattedInputText),
-        this.getListSeries(formattedInputText)
+      this.getListMovies(formattedInputText);
+      this.getListSeries(formattedInputText);
+      console.log(state.selectedType);
     },
   },
 }

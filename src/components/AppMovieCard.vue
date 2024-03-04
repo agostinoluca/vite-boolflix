@@ -17,7 +17,7 @@ export default {
 <template>
     <div class="row">
         <div class="col-12 pb-0">
-            <h2 v-if="!state.searchStart" class="text-secondary text-shadow">{{ state.initialMovieTitle }}</h2>
+            <h2 v-if="!state.searchStart" class="text-secondary text-shadow">{{ state.movieSectionTitle }}</h2>
             <div v-else-if="state.movies.length === 0" class="px-5">
                 <h2 class="text-danger text-shadow">Movies not found</h2>
                 <p class="text-secondary">{{ state.noResults }}</p>

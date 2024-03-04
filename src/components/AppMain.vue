@@ -23,8 +23,8 @@ export default {
     <main>
         <AppLoader v-if="state.loader"></AppLoader>
         <div v-else class="container">
-            <AppMovieCard></AppMovieCard>
-            <AppTvSeriesCard></AppTvSeriesCard>
+            <AppMovieCard v-if="!state.onlySeries"></AppMovieCard>
+            <AppTvSeriesCard v-if="!state.onlyMovies"></AppTvSeriesCard>
         </div>
     </main>
 </template>

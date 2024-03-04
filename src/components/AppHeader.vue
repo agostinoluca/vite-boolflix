@@ -6,6 +6,7 @@ export default {
     data() {
         return {
             inputText: '',
+            state
         }
     },
     methods: {
@@ -16,11 +17,19 @@ export default {
             state.getInitialResultsMovies();
             state.getInitialResultsSeries();
             state.searchStart = false;
-        }
+        },
+        trendingMovies() {
+            state.getTrendingMovies();
+            state.searchStart = false;
+        },
+        trendingSeries() {
+            state.getTrendingSeries();
+            state.searchStart = false;
+        },
     }
 }
 </script>
-        
+
 <template>
     <header>
         <div class="d-flex justify-content-between align-items-center">
@@ -29,16 +38,21 @@ export default {
                     <img width="180" src="../assets/img/logo.png" alt="Logo Boolflix">
                 </div>
                 <ul>
-                    <li @click="goHome">Home</li>
-                    <li>Movies</li>
-                    <li>Tv Series</li>
-                    <li>Kids</li>
+                    <li @click="goHome()">Home</li>
+                    <li @click="trendingMovies()">Top Movies</li>
+                    <li @click="trendingSeries()">Top Tv-Series</li>
                 </ul>
             </div>
             <div class="searchNav d-flex">
+                <select name="searchType" id="searchType" v-model="state.selectedType">
+                    <option value="">All Result</option>
+                    <option value="movies">Movies</option>
+                    <option value="series">Series</option>
+                </select>
                 <input id="searchBar" v-model="inputText" @keyup.enter="$emit('emitInputText', inputText)" type="text"
                     placeholder="Enter the title here">
-                <button class="d-flex justify-content-center align-items-center" @click="$emit('emitInputText', inputText)">
+                <button class="d-flex justify-content-center align-items-center"
+                    @click="$emit('emitInputText', inputText)">
                     <i class="fa-solid fa-caret-right"></i>
                 </button>
             </div>
@@ -48,14 +62,28 @@ export default {
 
 
 <style scoped>
-#searchBar {
-    width: 100%;
-}
-
 .logo:hover img {
     animation: rotate 1s linear;
     cursor: pointer;
 }
+
+#searchType {
+    background-color: transparent;
+    border: none;
+    border-radius: 0.10rem;
+    color: var(--boolflix-danger);
+    font-family: inherit;
+}
+
+#searchType option {
+    background-color: var(--boolflix-dark);
+}
+
+#searchBar {
+    width: 100%;
+}
+
+
 
 .searchNav button {
     border: none;
