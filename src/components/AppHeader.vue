@@ -45,7 +45,7 @@ export default {
             </div>
             <div class="searchNav d-flex">
                 <select name="searchType" id="searchType" v-model="state.selectedType">
-                    <option value="">All Result</option>
+                    <option value="">All Results</option>
                     <option value="movies">Movies</option>
                     <option value="series">Series</option>
                 </select>
@@ -70,9 +70,15 @@ export default {
 #searchType {
     background-color: transparent;
     border: none;
-    border-radius: 0.10rem;
+    border-radius: 0.25rem;
     color: var(--boolflix-danger);
     font-family: inherit;
+    box-shadow: 0rem 0 0.25rem var(--boolflix-danger);
+    width: 100%;
+
+    &:hover {
+        animation: shadowPulse 3s linear infinite;
+    }
 }
 
 #searchType option {
@@ -108,6 +114,7 @@ ul {
     gap: 1rem;
 
     & li:hover {
+        color: var(--boolflix-lighter);
         box-shadow: 0px 2px 0px 0px var(--boolflix-danger);
         border-radius: 0.15rem;
         cursor: pointer;

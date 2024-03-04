@@ -280,6 +280,12 @@ main {
     }
 }
 
+@keyframes shadowPulse {
+    50% {
+        box-shadow: -0.25rem 0 0.75rem var(--boolflix-danger);
+    }
+}
+
 /* #endregion Animation */
 
 /* #region Media Query */

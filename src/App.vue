@@ -30,8 +30,6 @@ export default {
         .get(apiUrl)
         .then((response) => {
           state.movies = response.data.results;
-          state.onlySeries = false;
-          state.onlyMovies = false;
           state.loader = false;
         })
         .catch((error) => {
@@ -48,8 +46,6 @@ export default {
         .get(apiUrl)
         .then((response) => {
           state.tvSeries = response.data.results;
-          state.onlySeries = false;
-          state.onlyMovies = false;
           state.loader = false;
         })
         .catch((error) => {
@@ -66,6 +62,16 @@ export default {
       this.getListMovies(formattedInputText);
       this.getListSeries(formattedInputText);
       console.log(state.selectedType);
+      if (state.selectedType === "movies") {
+        state.onlyMovies = true;
+        state.onlySeries = false;
+      } else if (state.selectedType === "series") {
+        state.onlySeries = true;
+        state.onlyMovies = false;
+      } else {
+        state.onlyMovies = false;
+        state.onlySeries = false;
+      }
     },
   },
 }
