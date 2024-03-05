@@ -68,13 +68,18 @@ img {
 /* #region Utility */
 .btn {
     background-color: var(--boolflix-primary);
-    color: var(--boolflix-lighter);
+    color: var(--boolflix-secondary);
     margin: 0 0.25rem 0.5rem 0.25rem;
     padding: 0.25rem;
     border-radius: 0.25rem;
     border: none;
     font-size: 0.75rem;
     cursor: pointer;
+
+    &:hover {
+        color: var(--boolflix-lighter);
+        box-shadow: 0 0 0.25rem var(--boolflix-lighter);
+    }
 }
 
 .h-100 {

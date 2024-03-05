@@ -64,7 +64,6 @@ export default {
 <style scoped>
 .logo:hover img {
     animation: rotate 1s linear;
-    cursor: pointer;
 }
 
 #searchType {
