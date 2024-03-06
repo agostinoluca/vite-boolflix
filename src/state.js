@@ -72,7 +72,7 @@ export const state = reactive({
       .get(apiUrl)
       .then((response) => {
         state.selectedGenre = response.data.genres;
-        console.log(state.selectedGenre);
+        // console.log(state.selectedGenre);
       })
       .catch((error) => {
         console.error(error);

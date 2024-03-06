@@ -14,15 +14,18 @@ export default {
         //     this.$emit('search', this.inputText)
         // },
         goHome() {
+            state.loader = true;
             state.getInitialResultsMovies();
             state.getInitialResultsSeries();
             state.searchStart = false;
         },
         trendingMovies() {
+            state.loader = true;
             state.getTrendingMovies();
             state.searchStart = false;
         },
         trendingSeries() {
+            state.loader = true;
             state.getTrendingSeries();
             state.searchStart = false;
         },

@@ -55,7 +55,7 @@ export default {
       // }, 3000);
 
     },
-    startSearch(inputText, selectedType) {
+    startSearch(inputText) {
       state.searchStart = true
       state.loader = true
       const words = inputText.split(' ');
