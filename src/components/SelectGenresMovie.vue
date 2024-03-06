@@ -11,13 +11,10 @@ export default {
 </script>
 
 <template>
-    <select class="genres_select" name="selectedGenre" id="selectedGenre" v-model="state.selectedGenreMovie">
+    <select class="genres_select" name="selectedGenreMovie" id="selectedGenreMovie" v-model="state.selectedGenreMovie">
         <option value="0">All Genre</option>
         <option v-for="genre in state.genresMovie" :value="genre.id">
             {{ genre.name }}
         </option>
     </select>
 </template>
-
-
-<style scoped></style>
