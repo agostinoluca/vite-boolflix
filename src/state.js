@@ -2,12 +2,15 @@ import axios from "axios";
 import { reactive } from "vue";
 
 export const state = reactive({
-  selectedGenre: "",
+  selectedGenreMovie: "0",
+  selectedGenreTv: "0",
   selectedType: "",
   movies: [],
   tvSeries: [],
   cast: [],
-  genres: [],
+  genresMovie: [],
+  genresTv: [],
+  genresCard: [],
   loader: true,
   searchStart: false,
   showGenres: false,
@@ -66,13 +69,27 @@ export const state = reactive({
         console.error(error);
       });
   },
-  getGenre() {
+  getMovieGenres() {
     const apiUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=71a27b20b786fe39560049b7c72c9d1f`;
     axios
       .get(apiUrl)
       .then((response) => {
-        state.selectedGenre = response.data.genres;
-        // console.log(state.selectedGenre);
+        state.genresMovie = response.data.genres;
+        // console.log(state.genres);
+      })
+      .catch((error) => {
+        console.error(error);
+        if (error) {
+          this.unavalaibleInfo = true;
+        }
+      });
+  },
+  getTvGenres() {
+    const apiUrl = `https://api.themoviedb.org/3/genre/tv/list?api_key=71a27b20b786fe39560049b7c72c9d1f`;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        state.genresTv = response.data.genres;
       })
       .catch((error) => {
         console.error(error);
@@ -106,8 +123,8 @@ export const state = reactive({
       .get(apiUrl)
       .then((response) => {
         this.showGenres = true;
-        state.genres = response.data.genres;
-        console.log(state.genres);
+        state.genresCard = response.data.genres;
+        console.log(state.genresCard);
       })
       .catch((error) => {
         console.error(error);
@@ -117,7 +134,7 @@ export const state = reactive({
       });
   },
   getGenreName(genreId) {
-    const genre = state.genres.find((genre) => genre.id === genreId);
+    const genre = state.genresCard.find((genre) => genre.id === genreId);
     if (genre) {
       return genre.name;
     } else {
@@ -126,7 +143,7 @@ export const state = reactive({
   },
   resetCastAndGenres() {
     state.cast = [];
-    state.genres = [];
+    state.genresCard = [];
     state.showGenres = false;
     this.unavalaibleInfo = false;
   },

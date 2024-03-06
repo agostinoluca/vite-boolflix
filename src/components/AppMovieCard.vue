@@ -1,22 +1,18 @@
 <script>
 import { state } from '../state';
 import FlagCountry from './FlagCountry.vue';
+import SelectGenresMovie from './SelectGenresMovie.vue';
 export default {
     name: 'AppMovieCard',
     components: {
-        FlagCountry
+        FlagCountry,
+        SelectGenresMovie
     },
     data() {
         return {
             state
         }
     },
-    methods: {
-        changeGenre(event) {
-            const selectedGenreId = event.target.value;
-            console.log(selectedGenreId);
-        }
-    }
 }
 </script>
 
@@ -29,16 +25,11 @@ export default {
                 <p class="text-secondary">{{ state.noResults }}</p>
             </div>
             <h2 v-else class="text-secondary text-shadow">Movies</h2>
-            <select @change="changeGenre($event)" class="genres_select" name="selectedGenre" id="selectedGenre">
-                <option value="">All Genre</option>
-                <option v-for="genre in state.selectedGenre" :value="genre.name">
-                    {{ genre.name }}
-                </option>
-            </select>
+            <SelectGenresMovie></SelectGenresMovie>
         </div>
-
         <!-- /.col-12 (Movies title and select genres) -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="movie in state.movies" :key="movie.id">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="movie in state.movies" :key="movie.id"
+            v-show="movie.genre_ids.includes(state.selectedGenreMovie) || state.selectedGenreMovie == 0">
             <div class="card" @mouseleave="state.resetCastAndGenres()">
                 <div class="card-body d-none">
                     <div class="card-info">

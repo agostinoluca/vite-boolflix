@@ -1,7 +1,8 @@
 <template>
     <footer>
         <div class="d-flex justify-content-center align-items-center h-100 p-1">
-            <p class="text-secondary">Created by a student of Boolean wdpt1 class. Copyright © [2024]. All rights reserved.
+            <p class="text-secondary">Created by a student of Boolean wdpt1 class. Copyright © [2024]. All rights
+                reserved.
             </p>
         </div>
     </footer>

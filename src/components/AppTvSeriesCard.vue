@@ -1,10 +1,12 @@
 <script>
 import { state } from '../state';
 import FlagCountry from './FlagCountry.vue';
+import SelectGenresTv from './SelectGenresTv.vue';
 export default {
     name: 'AppTvSeriesCard',
     components: {
-        FlagCountry
+        FlagCountry,
+        SelectGenresTv
     },
     data() {
         return {
@@ -16,16 +18,18 @@ export default {
 
 <template>
     <div class="row">
-        <div class="col-12 pb-0">
+        <div class="col-12 pb-0 d-flex g-1 justify-content-between">
             <h2 v-if="!state.searchStart" class="text-secondary text-shadow">{{ state.seriesSectionTitle }}</h2>
             <div v-else-if="state.tvSeries.length === 0" class="px-5">
                 <h2 class="text-danger text-shadow">Tv Series Not Found</h2>
                 <p class="text-secondary">{{ state.noResults }}</p>
             </div>
             <h2 v-else class="text-secondary text-shadow">Tv Series</h2>
+            <SelectGenresTv></SelectGenresTv>
         </div>
         <!-- /.col-12 (Tv series title) -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="show in state.tvSeries" :key="show.id">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="show in state.tvSeries" :key="show.id"
+            v-show="show.genre_ids.includes(state.selectedGenreTv) || state.selectedGenreTv == 0">
             <div class="card" @mouseleave="state.resetCastAndGenres()">
                 <div class="card-body d-none">
                     <div class="card-info">

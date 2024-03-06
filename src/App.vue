@@ -18,7 +18,8 @@ export default {
   },
   created() {
     // setTimeout(() => {
-    state.getGenre();
+    state.getMovieGenres();
+    state.getTvGenres();
     state.getInitialResultsMovies();
     state.getInitialResultsSeries();
     // }, 3000);
