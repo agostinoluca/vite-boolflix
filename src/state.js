@@ -2,13 +2,14 @@ import axios from "axios";
 import { reactive } from "vue";
 
 export const state = reactive({
-  loader: true,
-  searchStart: false,
+  selectedGenre: "",
   selectedType: "",
   movies: [],
   tvSeries: [],
   cast: [],
   genres: [],
+  loader: true,
+  searchStart: false,
   showGenres: false,
   unavalaibleInfo: false,
   onlyMovies: false,
@@ -50,21 +51,6 @@ export const state = reactive({
         console.error(error);
       });
   },
-  getTrendingMovies() {
-    const apiUrl = state.trending_movies;
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        state.movies = response.data.results;
-        state.movieSectionTitle = "Trending Movies";
-        state.onlySeries = false;
-        state.onlyMovies = true;
-        state.loader = false;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  },
   getInitialResultsSeries() {
     const apiUrl = state.tv_series_initial_api;
     axios
@@ -80,19 +66,19 @@ export const state = reactive({
         console.error(error);
       });
   },
-  getTrendingSeries() {
-    const apiUrl = state.trending_tv_series;
+  getGenre() {
+    const apiUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=71a27b20b786fe39560049b7c72c9d1f`;
     axios
       .get(apiUrl)
       .then((response) => {
-        state.tvSeries = response.data.results;
-        state.seriesSectionTitle = "Trending Tv Series";
-        state.onlySeries = true;
-        state.onlyMovies = false;
-        state.loader = false;
+        state.selectedGenre = response.data.genres;
+        console.log(state.selectedGenre);
       })
       .catch((error) => {
         console.error(error);
+        if (error) {
+          this.unavalaibleInfo = true;
+        }
       });
   },
   getCast(id) {
@@ -113,7 +99,7 @@ export const state = reactive({
         }
       });
   },
-  getGenre(entertainment) {
+  getCardGenre(entertainment) {
     this.resetCastAndGenres();
     const apiUrl = `https://api.themoviedb.org/3/genre/${entertainment}/list?api_key=71a27b20b786fe39560049b7c72c9d1f`;
     axios
@@ -167,5 +153,35 @@ export const state = reactive({
               <span class="text-secondary">(${item.vote_count} votes)</span>
             `;
     }
+  },
+  getTrendingMovies() {
+    const apiUrl = state.trending_movies;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        state.movies = response.data.results;
+        state.movieSectionTitle = "Trending Movies";
+        state.onlySeries = false;
+        state.onlyMovies = true;
+        state.loader = false;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  },
+  getTrendingSeries() {
+    const apiUrl = state.trending_tv_series;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        state.tvSeries = response.data.results;
+        state.seriesSectionTitle = "Trending Tv Series";
+        state.onlySeries = true;
+        state.onlyMovies = false;
+        state.loader = false;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
 });

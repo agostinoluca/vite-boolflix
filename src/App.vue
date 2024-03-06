@@ -18,6 +18,7 @@ export default {
   },
   created() {
     // setTimeout(() => {
+    state.getGenre();
     state.getInitialResultsMovies();
     state.getInitialResultsSeries();
     // }, 3000);

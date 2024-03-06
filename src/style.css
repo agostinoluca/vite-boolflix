@@ -182,6 +182,19 @@ main {
     min-height: 100vh;
 }
 
+.genres_select {
+    background-color: transparent;
+    border: none;
+    color: var(--boolflix-secondary);
+    border-radius: 0.25rem;
+    font-family: "Roboto", sans-serif;
+    font-size: medium;
+
+    & option {
+        background-color: var(--boolflix-primary);
+    }
+}
+
 .card {
     position: relative;
     background-color: var(--boolflix-dark);

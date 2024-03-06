@@ -11,20 +11,33 @@ export default {
             state
         }
     },
+    methods: {
+        changeGenre(event) {
+            const selectedGenreId = event.target.value;
+            console.log(selectedGenreId);
+        }
+    }
 }
 </script>
 
 <template>
     <div class="row">
-        <div class="col-12 pb-0">
+        <div class="col-12 pb-0 d-flex g-1 justify-content-between">
             <h2 v-if="!state.searchStart" class="text-secondary text-shadow">{{ state.movieSectionTitle }}</h2>
             <div v-else-if="state.movies.length === 0" class="px-5">
                 <h2 class="text-danger text-shadow">Movies not found</h2>
                 <p class="text-secondary">{{ state.noResults }}</p>
             </div>
             <h2 v-else class="text-secondary text-shadow">Movies</h2>
+            <select @change="changeGenre($event)" class="genres_select" name="selectedGenre" id="selectedGenre">
+                <option value="">All Genre</option>
+                <option v-for="genre in state.selectedGenre" :value="genre.name">
+                    {{ genre.name }}
+                </option>
+            </select>
         </div>
-        <!-- /.col-12 (Movies title) -->
+
+        <!-- /.col-12 (Movies title and select genres) -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="movie in state.movies" :key="movie.id">
             <div class="card" @mouseleave="state.resetCastAndGenres()">
                 <div class="card-body d-none">
@@ -46,7 +59,7 @@ export default {
                         <div class="card-rating" v-html="state.cardRating(movie)"></div>
                         <div class="cast-genre">
                             <button class="btn" @click="state.getCast(movie.id)">CAST</button>
-                            <button class="btn" @click="state.getGenre('movie')">GENRE</button>
+                            <button class="btn" @click="state.getCardGenre('movie')">GENRE</button>
                             <div v-for="actor in state.cast" :key="movie.id">
                                 <p>{{ actor.name }}</p>
                             </div>

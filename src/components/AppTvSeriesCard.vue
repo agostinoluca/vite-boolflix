@@ -48,7 +48,7 @@ export default {
                         <div class="card-rating" v-html="state.cardRating(show)"></div>
                         <div class="cast-genre">
                             <button class="btn" @click="state.getCast(show.id)">CAST</button>
-                            <button class="btn" @click="state.getGenre('tv')">GENRE</button>
+                            <button class="btn" @click="state.getCardGenre('tv')">GENRE</button>
                             <div v-for="actor in state.cast" :key="show.id">
                                 <p>{{ actor.name }}</p>
                             </div>
