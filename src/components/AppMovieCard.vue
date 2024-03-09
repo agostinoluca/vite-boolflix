@@ -13,6 +13,15 @@ export default {
             state
         }
     },
+    computed: {
+        allCardsHidden() {
+            return state.movies.every(
+                (movie) =>
+                    !movie.genre_ids.includes(state.selectedGenreMovie) &&
+                    state.selectedGenreMovie !== 0
+            );
+        },
+    }
 }
 </script>
 
@@ -26,6 +35,10 @@ export default {
             </div>
             <h2 v-else class="text-secondary text-shadow">Movies</h2>
             <SelectGenresMovie></SelectGenresMovie>
+        </div>
+        <div class="col-12" v-if="allCardsHidden && state.selectedGenreMovie !== '0'">
+            <h2 class="text-danger text-shadow">Movies not found</h2>
+            <p class="text-secondary">{{ state.noResultsSelect }}</p>
         </div>
         <!-- /.col-12 (Movies title and select genres) -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="movie in state.movies" :key="movie.id"

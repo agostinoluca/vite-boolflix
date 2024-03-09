@@ -13,6 +13,15 @@ export default {
             state
         }
     },
+    computed: {
+        allCardsHidden() {
+            return state.tvSeries.every(
+                (show) =>
+                    !show.genre_ids.includes(state.selectedGenreTv) &&
+                    state.selectedGenreTv !== 0
+            );
+        },
+    }
 }
 </script>
 
@@ -26,6 +35,10 @@ export default {
             </div>
             <h2 v-else class="text-secondary text-shadow">Tv Series</h2>
             <SelectGenresTv></SelectGenresTv>
+        </div>
+        <div class="col-12" v-if="allCardsHidden && state.selectedGenreTv !== '0'">
+            <h2 class="text-danger text-shadow">Tv Series not found</h2>
+            <p class="text-secondary">{{ state.noResultsSelect }}</p>
         </div>
         <!-- /.col-12 (Tv series title) -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="show in state.tvSeries" :key="show.id"

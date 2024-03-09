@@ -38,6 +38,7 @@ export const state = reactive({
   noVoteMessage: "no votes available",
   noResults:
     "No results for your search. Please check your input or try a new search.",
+  noResultsSelect: "No movies found for your genre selection.",
   noInfo: "Information not available for this show.",
   getInitialResultsMovies() {
     const apiUrl = state.movie_initial_api;
