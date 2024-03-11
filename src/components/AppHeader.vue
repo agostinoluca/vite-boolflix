@@ -10,20 +10,20 @@ export default {
         }
     },
     methods: {
-        // emitInputText() {
-        //     this.$emit('search', this.inputText)
-        // },
+        // tasto Home - carica i risultati iniziali (preimpostati con query API) di Movies e Series
         goHome() {
             state.loader = true;
             state.getInitialResultsMovies();
             state.getInitialResultsSeries();
             state.searchStart = false;
         },
+        // tasto Top Movies - mostra i trending movies (nasconde le Tv Series)
         trendingMovies() {
             state.loader = true;
             state.getTrendingMovies();
             state.searchStart = false;
         },
+        // tasto Top Tv-Series - mostra le trending series (nasconde i Movies)
         trendingSeries() {
             state.loader = true;
             state.getTrendingSeries();
@@ -46,6 +46,7 @@ export default {
                     <li @click="trendingSeries()">Top Tv-Series</li>
                 </ul>
             </div>
+            <!-- /logo e pulsanti Home, top Movies e top Series -->
             <div class="searchNav d-flex">
                 <select name="searchType" id="searchType" v-model="state.selectedType">
                     <option value="">All Results</option>
@@ -59,8 +60,10 @@ export default {
                     <i class="fa-solid fa-caret-right"></i>
                 </button>
             </div>
+            <!-- /.searchNav -->
         </div>
     </header>
+    <!-- /header -->
 </template>
 
 

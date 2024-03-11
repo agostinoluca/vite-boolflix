@@ -5,6 +5,7 @@ export default {
         originalLanguage: String
     },
     methods: {
+        // correggo alcune librerie di flag che non vengono correttamente visualizzate
         flagCountryClass() {
             const languageMap = {
                 en: 'gb',
@@ -25,6 +26,7 @@ export default {
                 fa: 'ir'
             };
 
+            // restituisce il valore corrisposto se esiste, altrimenti consegna il codice della lingua originale
             const countryCode = languageMap[this.originalLanguage] || this.originalLanguage;
             return `flag-icon flag-icon-${countryCode}`;
         }

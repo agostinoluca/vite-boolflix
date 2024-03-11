@@ -16,17 +16,16 @@ export default {
       state
     }
   },
+  // alla creazione della pagina, carico dei risultati per movies e tv series e carico i generi
   created() {
-    // setTimeout(() => {
     state.getMovieGenres();
     state.getTvGenres();
     state.getInitialResultsMovies();
     state.getInitialResultsSeries();
-    // }, 3000);
   },
   methods: {
+    // chiamata API per la ricerca dei Movies
     getListMovies(formattedInputText) {
-      // setTimeout(() => {
       const apiUrl = `${state.movie_api_url}&query=${formattedInputText}`;
       axios
         .get(apiUrl)
@@ -37,12 +36,10 @@ export default {
         .catch((error) => {
           console.error(error);
         })
-      // }, 3000);
-
     },
 
+    // chiamata API per la ricerca delle Tv Series
     getListSeries(formattedInputText) {
-      // setTimeout(() => {
       const apiUrl = `${state.tv_series_api_url}&query=${formattedInputText}`;
       axios
         .get(apiUrl)
@@ -53,9 +50,9 @@ export default {
         .catch((error) => {
           console.error(error);
         })
-      // }, 3000);
-
     },
+
+    // avvio della ricerca tramite barra di ricerca
     startSearch(inputText) {
       state.searchStart = true
       state.loader = true
@@ -63,7 +60,7 @@ export default {
       const formattedInputText = words.join('+');
       this.getListMovies(formattedInputText);
       this.getListSeries(formattedInputText);
-      console.log(state.selectedType);
+      // condizione per visualizzare solo film, solo Tv series o entrambe in pagina
       if (state.selectedType === "movies") {
         state.onlyMovies = true;
         state.onlySeries = false;

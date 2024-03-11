@@ -40,6 +40,7 @@ export const state = reactive({
     "No results for your search. Please check your input or try a new search.",
   noResultsSelect: "No movies found for your genre selection.",
   noInfo: "Information not available for this show.",
+  // chiamata API per caricare i risultati iniziali dei Movies della Home page
   getInitialResultsMovies() {
     const apiUrl = state.movie_initial_api;
     axios
@@ -55,6 +56,7 @@ export const state = reactive({
         console.error(error);
       });
   },
+  // chiamata API per caricare i risultati iniziali delle Tv Series della Home page
   getInitialResultsSeries() {
     const apiUrl = state.tv_series_initial_api;
     axios
@@ -70,13 +72,13 @@ export const state = reactive({
         console.error(error);
       });
   },
+  // chiamata API per popolare l'array genresMovie dei generi disponibili
   getMovieGenres() {
     const apiUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=71a27b20b786fe39560049b7c72c9d1f`;
     axios
       .get(apiUrl)
       .then((response) => {
         state.genresMovie = response.data.genres;
-        // console.log(state.genres);
       })
       .catch((error) => {
         console.error(error);
@@ -85,6 +87,7 @@ export const state = reactive({
         }
       });
   },
+  // chiamata API per popolare l'array genresTv dei generi disponibili
   getTvGenres() {
     const apiUrl = `https://api.themoviedb.org/3/genre/tv/list?api_key=71a27b20b786fe39560049b7c72c9d1f`;
     axios
@@ -99,6 +102,7 @@ export const state = reactive({
         }
       });
   },
+  // chiamata API per restituire il CAST di uno movie definito tramite ID
   getCast(id) {
     this.resetCastAndGenres();
     const apiUrl = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=71a27b20b786fe39560049b7c72c9d1f`;
@@ -117,6 +121,7 @@ export const state = reactive({
         }
       });
   },
+  // chiamata API per restituire il GENERE di uno spettacolo definito tramite tipologia
   getCardGenre(entertainment) {
     this.resetCastAndGenres();
     const apiUrl = `https://api.themoviedb.org/3/genre/${entertainment}/list?api_key=71a27b20b786fe39560049b7c72c9d1f`;
@@ -125,7 +130,6 @@ export const state = reactive({
       .then((response) => {
         this.showGenres = true;
         state.genresCard = response.data.genres;
-        console.log(state.genresCard);
       })
       .catch((error) => {
         console.error(error);
@@ -134,6 +138,7 @@ export const state = reactive({
         }
       });
   },
+  // restituisce il GENERE di uno spettacolo oppure un messaggio
   getGenreName(genreId) {
     const genre = state.genresCard.find((genre) => genre.id === genreId);
     if (genre) {
@@ -142,16 +147,19 @@ export const state = reactive({
       return "Unknown Genres";
     }
   },
+  // svuota le memorie delle array di cast e generi di uno spettacolo
   resetCastAndGenres() {
     state.cast = [];
     state.genresCard = [];
     state.showGenres = false;
     this.unavalaibleInfo = false;
   },
+  // porta i voti da scala 1/10 a scala 1/5
   starsVote(vote_average) {
     const stars = vote_average / 2;
     return Math.ceil(stars);
   },
+  // permette, tramite un ciclo for, di colorare tante stelline quanti sono i voti
   cardRating(item) {
     if (item.vote_average === 0) {
       return `
@@ -172,6 +180,7 @@ export const state = reactive({
             `;
     }
   },
+  // chiamata API per visualizzare i Trending Movies
   getTrendingMovies() {
     const apiUrl = state.trending_movies;
     axios
@@ -187,6 +196,7 @@ export const state = reactive({
         console.error(error);
       });
   },
+  // chiamata API per visualizzare le Trending Tv Series
   getTrendingSeries() {
     const apiUrl = state.trending_tv_series;
     axios
